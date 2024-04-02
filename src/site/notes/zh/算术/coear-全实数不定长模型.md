@@ -110,4 +110,51 @@ coe* CoeFromDouble(double flt);
 
 ```
 
+【C++】
+
+```C++
+namespace uni {
+	class Coe /*: public coe*/ {
+	public:
+		Coe(const char* coff, const char* divr, const char* expo = "+0", stduint dimension = 0);
+		Coe(double num);
+		Coe(const char* local_str);
+		Coe(const Coe& c);
+		Coe(coe* c);
+		~Coe();
+		bool isnan();
+		bool isinf();
+		double GetReal() const;
+
+		static Coe pi();
+		static Coe e();
+
+		String ToString(int opt = 0) const;
+		operator double() const;
+		operator String() const;
+
+		//// 运算符的定义
+
+		//{TEMP} no using: Coe res(CoeCpy(this->co)); CoeSin(res.co);
+		Coe Sin()   { return Coe(sin  (operator double())); }
+		Coe Cos()   { return Coe(cos  (operator double())); }
+		Coe Tan()   { return Coe(tan  (operator double())); }
+		Coe ASin()  { return Coe(asin (operator double())); }
+		Coe ACos()  { return Coe(acos (operator double())); }
+		Coe ATan()  { return Coe(atan (operator double())); }
+		Coe Sinh()  { return Coe(sinh (operator double())); }
+		Coe Cosh()  { return Coe(cosh (operator double())); }
+		Coe Tanh()  { return Coe(tanh (operator double())); }
+		Coe ASinh() { return Coe(asinh(operator double())); }
+		Coe ACosh() { return Coe(acosh(operator double())); }
+		Coe ATanh() { return Coe(atanh(operator double())); }
+	// ...
+	};
+	
+	extern const Coe coe_pi;
+	extern const Coe coe_e;
+
+}
+```
+
 
