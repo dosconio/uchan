@@ -55,4 +55,75 @@ inline static tnode* StrTokenBind(tnode* left, tnode* mid, tnode* right)
 
 ```
 
+【C++】
 
+```C++
+	class Tnode : public Dnode {
+	public:
+		Tnode*& left; // = (Tnode*&)(Dnode::left);
+		Tnode*& next; // = (Tnode*&)(Dnode::next);
+		stduint col, row;
+		char*& addr; // = (char*&)Dnode::offs;
+		Tnode(void* in_addr = 0, stduint typ = 0, Tnode* lef = 0, Tnode* nex = 0, \
+			stduint col = 0, stduint row = 0) : col(col), row(row), addr((char*&)Dnode::offs), left((Tnode*&)Dnode::left), next((Tnode*&)Dnode::next){
+			this->offs = in_addr;
+			this->type = typ;
+			this->left = lef;
+			this->next = nex;
+		}
+		void Suspend(void (*freefunc)(Tnode*) = 0, Tnode** as_root = 0, \
+			Tnode** as_last = 0, stduint** counts = 0);
+	private:
+		Dnode* dn;
+	};
+
+	class TnodeChain : public DnodeChain {
+	public:
+		TnodeChain(bool need_free = false);
+		~TnodeChain();
+		Tnode* Append(const void* addr, stduint contlen, stduint typ, stduint row, stduint col);
+		void Sort();
+		void Index(void* content);
+		// stduint Count() ...
+		Tnode* Root() {
+			return (Tnode*)root_node;
+		}
+		Tnode* Last() {
+			return (Tnode*)last_node;
+		}
+		
+		void Remove(const stduint iden);
+		void Remove(const void* content);
+		Tnode* Remove(Tnode* nod, bool systematic = true);
+
+		void SetFreeContent(bool need_free);
+	protected:
+		Tnode*& root_node; // = (Tnode*&)DnodeChain::root_node;
+		Tnode*& last_node; // = (Tnode*&)DnodeChain::last_node;
+		//{TODO}
+	};
+
+	class TokenParseUnit {
+	private:
+		TnodeChain* chain;
+		int (*getnext)(void);
+		void (*seekback)(stdint chars);
+	public:
+		stduint crtline;
+		stduint crtcol;
+		char* buffer, * bufptr;
+		TokenParseUnit(int (*getnext)(void), void (*seekback)(stdint chars), char* buffer);
+		~TokenParseUnit();
+		TnodeChain* TokenParse();
+		int Getnext() {
+			crtcol++;
+			return getnext();
+		}
+		void Seekpos(stdint chars) {
+			seekback(chars);
+		}
+		TnodeChain* GetChain() {
+			return chain;
+		}
+	};
+```
