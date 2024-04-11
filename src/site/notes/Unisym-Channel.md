@@ -3,14 +3,12 @@
 ---
 
 
-`HN-0DF0` 
-
 The latest repository:
 - [Branch of Dscn on GitHub](https://github.com/dosconio/unisym)
 
 Please choose a language:
-- English
-- [[zh/目录\|Chinese]] 
-- Nihongo
+- [[en/0-Ciallo\|English]]
+- [[zh/0-目录\|Chinese]] 
+- [[jp/0-Yahho\|Nihongo]]
 
 
