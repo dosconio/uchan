@@ -1,5 +1,5 @@
 ---
-her-note: false
-dg-publish: true
+{"dg-publish":true,"permalink":"/jp/0-yahho/"}
 ---
+
 
