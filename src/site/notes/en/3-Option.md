@@ -1,7 +1,7 @@
 ---
-her-note: false
-dg-publish: true
+{"dg-publish":true,"permalink":"/en/3-option/"}
 ---
+
 
 ### Option Switch
 
@@ -25,9 +25,15 @@ dg-publish: true
 
 - `_BUILD_Qt` 
 
+#### > Instruction Set
+
+- p_i386
+- p_i8051
+- p_CortexM0
+
 #### > Processor and Controller
 
-- `_INC_MCU_STM32F103VE` 
+- `_MCU_STM32F103VE` 
 
 #### > Platform and Environment
 
@@ -39,8 +45,9 @@ Sub-option of CPU or MCU
 
 runtime host environment
 
-- `_WinNT`
+- `_WinNT`: `_Win32` `_Win64` 
 - `_Linux`
+- `_MCCA`
 
 environment
 
